@@ -175,6 +175,22 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6508271500166650475, guid: 0e0672a0eec7f13459e8319100a3e907, type: 3}
+      propertyPath: angle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6508271500166650475, guid: 0e0672a0eec7f13459e8319100a3e907, type: 3}
+      propertyPath: size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6508271500166650475, guid: 0e0672a0eec7f13459e8319100a3e907, type: 3}
+      propertyPath: size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6508271500166650475, guid: 0e0672a0eec7f13459e8319100a3e907, type: 3}
+      propertyPath: distance
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

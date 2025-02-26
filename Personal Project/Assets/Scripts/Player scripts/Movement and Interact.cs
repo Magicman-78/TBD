@@ -3,10 +3,16 @@ using UnityEngine.UI;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem;
+using System.Drawing;
 
 public class Movement : MonoBehaviour
 {
     public float moveSpeed, runSpeed;
+
+    private Vector2 mousePos;
+
+    public float cooldown, distance, angle;
+    public Vector2 size;
 
     private Rigidbody2D rb2d;
     private Vector2 moveAmount;
@@ -29,6 +35,15 @@ public class Movement : MonoBehaviour
         // Changes the moveAmount equal to what it's reading from the input
         moveAmount=ctx.ReadValue<Vector2>();
     }
+    
+    // Uses the position of the mouse and the direction that the player is facing and returns whatever the direction is
+    public Vector2 GetInteractDirection()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (mousePos - (Vector2)transform.position).normalized * distance;
+
+        return direction;
+    }
 
     // Interact action function
     public void Interact(InputAction.CallbackContext ctx)
@@ -37,8 +52,22 @@ public class Movement : MonoBehaviour
         if (ctx.ReadValue<float>() == 1)
         {
             // Write the circle or box cast here in order to interact with other things
+            var hit = Physics2D.BoxCast(GetInteractDirection(), size, angle, Vector2.zero, 0);
             // Writes message in Console
             Debug.Log("I'm touching you");
         }
+    }
+    
+    // Returns the transform and position from the GetInteractionDirection
+    private Vector2 GetInteractSpot()
+    {
+        return transform.position + (Vector3)GetInteractDirection();
+    }
+
+    // Draws a line and cube where the mouse is to show where the player is looking
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3)GetInteractDirection());
+        Gizmos.DrawWireCube(GetInteractSpot(), size);
     }
 }

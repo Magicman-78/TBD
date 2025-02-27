@@ -1,16 +1,32 @@
 using UnityEngine;
+using System.Collections;
+using Unity.VisualScripting;
 
 public class StressMeter : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float currentStress, maxStress, stressRate;
+
     void Start()
+    {
+        StartCoroutine(FillStress());
+    }
+
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator FillStress()
     {
-        
+        while(currentStress < maxStress)
+        {
+            currentStress += stressRate / 100f;
+
+            if (currentStress >= maxStress)
+                currentStress = maxStress;
+
+            yield return new WaitForSeconds(.01f);
+        }
     }
 }

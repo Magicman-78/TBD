@@ -53,9 +53,16 @@ public class Movement : MonoBehaviour
         {
             // Write the circle or box cast here in order to interact with other things
             var hit = Physics2D.BoxCast(GetInteractDirection(), size, angle, Vector2.zero, 0);
+
+            if (hit && hit.collider.CompareTag("Static Party-goer"))
+            {
+                Debug.Log("Talking to static party-goer");
+            }
+
             // Writes message in Console
             Debug.Log("I'm touching you");
         }
+
     }
     
     // Returns the transform and position from the GetInteractionDirection

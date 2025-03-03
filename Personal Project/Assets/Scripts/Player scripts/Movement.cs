@@ -52,15 +52,18 @@ public class Movement : MonoBehaviour
         if (ctx.ReadValue<float>() == 1)
         {
             // Write the circle or box cast here in order to interact with other things
-            var hit = Physics2D.BoxCast(GetInteractDirection(), size, angle, Vector2.zero, 0);
+            var hit = Physics2D.BoxCast(GetInteractSpot(), size, angle, Vector2.zero, 0);
 
-            if (hit && hit.collider.CompareTag("Static Party-goer"))
+            if (hit && hit.collider.CompareTag("StaticPartygoer"))
             {
                 Debug.Log("Talking to static party-goer");
             }
 
-            // Writes message in Console
-            Debug.Log("I'm touching you");
+            else
+            {
+                // Writes message in Console
+                Debug.Log("Interacting");
+            }
         }
 
     }

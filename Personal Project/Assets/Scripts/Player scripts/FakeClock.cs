@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using UnityEditor.XR;
 using UnityEngine;
 
 public class FakeClock : MonoBehaviour
@@ -11,6 +12,8 @@ public class FakeClock : MonoBehaviour
     [SerializeField] private int timeLimit;
 
     [NonSerialized] public int timeHours;
+
+    public GameObject catRoom;
 
     void Start()
     {
@@ -30,6 +33,16 @@ public class FakeClock : MonoBehaviour
         {
             timeText.text = timeHours + ":00 AM";
         }
+
+        //if (catRoom.gameObject.GetComponent<CatRoomTrigger>().playerInsideRoom == true)
+        //{
+            
+        //}
+
+        //if (catRoom.gameObject.GetComponent<CatRoomTrigger>().playerInsideRoom == false)
+        //{
+
+        //}
     }
 
     // This coroutine makes everything function by waiting for whatever timeUntilHourChange is equal to, and then checking if it is equal to 12, and if it isn't, then it adds 1 to timeHours until it reaches whatever timeLimit is equal to
